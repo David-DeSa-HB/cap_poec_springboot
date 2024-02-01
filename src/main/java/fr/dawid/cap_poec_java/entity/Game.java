@@ -55,7 +55,7 @@ public class Game implements SluggerInterface {
     @ManyToOne
     private Classification classification;
 
-    @OneToMany(mappedBy = "game")
+    @OneToMany(mappedBy = "game", cascade = CascadeType.REMOVE)
     private List<Review> reviews = new ArrayList<>();
 
     @ManyToOne

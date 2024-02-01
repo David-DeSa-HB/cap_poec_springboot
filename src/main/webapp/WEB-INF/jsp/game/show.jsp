@@ -12,15 +12,26 @@
             <li class="breadcrumb-item active"><a class="btn-link" href="#game-reviews">Les commentaires</a></li>
         </ol>
     </nav>
-    <div class="row">
+    <div class="row d-flex justify-content-evenly">
         <div class="col-md-4 col-sm-12">
             <div class="container-img p-3">
                 <img alt="${game.name}" src="${game.image}">
             </div>
         </div>
-        <div class="col-md-6 col-sm-12">
+        <div class="col-md-6 col-sm-12 pt-4">
+            <div class="d-flex justify-content-start">
             <h1>${game.name}</h1>
-            <div class="box-blk">
+            <security:authorize access="hasRole('MODERATOR')">
+
+                <a class="btn btn-link rating-5"
+                   href="${UrlRoute.URL_GAME_DELETE}/${game.id}"
+                   title="Supprimer"
+                >
+                    <i class="fa-solid fa-xmark fa-2x"></i>
+                </a>
+            </security:authorize>
+            </div>
+            <div class="box-blk mt-5">
                 <c:if test="${game.platforms.size() > 0}">
                     <div class="d-flex justify-content-start">
                     <p class="m-0">Disponible sur : </p>
@@ -34,8 +45,12 @@
                         </c:forEach>
                     </ul>
                     </div>
-                    <p class="m-0">Parution: ${game.publishedAt}</p>
-                    <p class="m-0">Modèle Economique: ${game.businessModel.name}</p>
+                    <p class="mt-2">Parution: ${game.publishedAt}</p>
+                    <p class="mt-2">Genre: ${game.genre.name}</p>
+                    <p class="mt-2">Editeur: ${game.businessModel.name}</p>
+                    <p class="mt-2">Modèle Economique: ${game.publisher.name}</p>
+                    <p class="mt-2">Classification: ${game.classification.name}</p>
+
                 </c:if>
             </div>
         </div>

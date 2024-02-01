@@ -16,10 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -141,6 +138,20 @@ public class GameController implements DAOFindByIdInterface<Game> {
                 flashMessageBuilder.createSuccessFlashMessage("Jeu créé avec succès !")
         );
         mav.setViewName("redirect:" + UrlRoute.URL_GAMES + "/" + gameService.create(gameDTO, principal.getName()).getSlug());
+        return mav;
+    }
+    @GetMapping(UrlRoute.URL_GAME_DELETE+"/{id}")
+    public ModelAndView delete(
+            @PathVariable Long id,
+            RedirectAttributes redirectAttributes,
+            ModelAndView mav
+    ){
+    gameService.delete(id);
+        redirectAttributes.addFlashAttribute(
+                "flashMessage",
+                flashMessageBuilder.createWarningFlashMessage("Jeu effacé !")
+        );
+        mav.setViewName("redirect:" + UrlRoute.URL_GAMES);
         return mav;
     }
 }

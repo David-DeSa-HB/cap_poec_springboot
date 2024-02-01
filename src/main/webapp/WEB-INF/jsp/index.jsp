@@ -3,7 +3,6 @@
 <c:set var="title" scope="request" value="Avis"/>
 <jsp:include flush="true" page="${contextPath}/WEB-INF/jsp/base.jsp"/>
 
-
 <div class="container my-3">
 
     <nav aria-label="breadcrumb">
