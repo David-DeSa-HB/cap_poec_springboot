@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ include file="tag.jsp" %>
+<%@ include file="../tag.jsp" %>
 <c:set var="title" scope="request" value="${business_models.name}"/>
-<jsp:include flush="true" page="base.jsp"/>
+<jsp:include flush="true" page="../base.jsp"/>
 
 <div class="container">
     <h1>Modèles Economiques</h1>
@@ -17,4 +17,4 @@
     </c:forEach>
 </div>
 
-<%@ include file="footer.jsp" %>
+<%@ include file="../footer.jsp" %>

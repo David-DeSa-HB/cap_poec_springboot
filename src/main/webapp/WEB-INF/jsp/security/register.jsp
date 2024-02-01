@@ -4,7 +4,7 @@
 
 <div class="container-security">
   <div class="security-form">
-      <h2 class="form-security-heading">Create your account</h2>
+      <h2 class="form-security-heading">Créer un compte</h2>
       <f:form method="POST" modelAttribute="userForm" class="form-signin">
         <div class="form-group ${status.error ? 'has-error' : ''} mt-security">
           <f:input type="text" path="nickname" class="form-control" placeholder="Nickname"
@@ -25,7 +25,13 @@
           <f:errors path="birthAt" cssClass="invalid-feedback"/>
         </div>
         <div class="d-flex justify-content-center">
-          <button class="btn btn1" type="submit" style="width: 50%;">Submit</button>
+          <button class="btn btn-form" type="submit">Envoyer</button>
+        </div>
+        <div class="mt-cool">
+        <p class="text-center">Déjà membre ?</p>
+        <a class="d-flex justify-content-center link-if" href="${UrlRoute.URL_LOGIN}">
+          S'identifier.
+        </a>
         </div>
     </f:form>
   </div>

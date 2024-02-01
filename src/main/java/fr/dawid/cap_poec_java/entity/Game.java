@@ -1,5 +1,6 @@
 package fr.dawid.cap_poec_java.entity;
 
+import fr.dawid.cap_poec_java.entity.interfaces.SluggerInterface;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,7 +16,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-public class Game {
+public class Game implements SluggerInterface {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +25,10 @@ public class Game {
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
+
+    private String slug;
 
     @Column(nullable = false)
     private LocalDate publishedAt;
@@ -55,7 +58,17 @@ public class Game {
     @OneToMany(mappedBy = "game")
     private List<Review> reviews = new ArrayList<>();
 
-    @OneToOne
+    @ManyToOne
     private Moderator moderator;
 
+    public void addPlatform(Platform platform) {
+        if (!platforms.contains(platform)) {
+            platforms.add(platform);
+        }
+    }
+
+    @Override
+    public String getField() {
+        return name;
+    }
 }

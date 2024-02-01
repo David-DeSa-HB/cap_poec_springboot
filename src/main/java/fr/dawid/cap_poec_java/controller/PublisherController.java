@@ -14,7 +14,7 @@ public class PublisherController {
 
     @GetMapping("/publishers")
     public ModelAndView view(ModelAndView mav){
-        mav.setViewName("publishers");
+        mav.setViewName("index");
         mav.addObject("publisher", publisherService.findAll());
         return mav;
     }

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
-<%@ include file="tag.jsp" %>
+<%@ include file="../tag.jsp" %>
 <c:set var="title" scope="request" value="${classifications.name}"/>
-<jsp:include flush="true" page="base.jsp"/>
+<jsp:include flush="true" page="../base.jsp"/>
 
 <div class="container">
     <h1>Classifications</h1>
@@ -15,4 +15,4 @@
         </div>
     </c:forEach>
 </div>
-<%@ include file="footer.jsp" %>
+<%@ include file="../footer.jsp" %>

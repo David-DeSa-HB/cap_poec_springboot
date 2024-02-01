@@ -1,12 +1,10 @@
 package fr.dawid.cap_poec_java.service;
 
 import fr.dawid.cap_poec_java.DTO.UserPostDTO;
-import fr.dawid.cap_poec_java.entity.Gamer;
-import fr.dawid.cap_poec_java.entity.Moderator;
-import fr.dawid.cap_poec_java.entity.User;
+import fr.dawid.cap_poec_java.entity.*;
 import fr.dawid.cap_poec_java.exception.NotFoundEntityException;
 import fr.dawid.cap_poec_java.repository.UserRepository;
-import fr.dawid.cap_poec_java.service.interfaces.DAOServiceInterface;
+import fr.dawid.cap_poec_java.service.interfaces.DAOFindByIdInterface;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,7 +19,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class UserService implements DAOServiceInterface<User>,
+public class UserService implements DAOFindByIdInterface<User>,
                                     UserDetailsService {
 
     private BCryptPasswordEncoder passwordEncoder;
@@ -34,7 +32,7 @@ public class UserService implements DAOServiceInterface<User>,
     }
 
     @Override
-    public User getObjectById(Long id) {
+    public User findById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(NotFoundEntityException::new);
     }

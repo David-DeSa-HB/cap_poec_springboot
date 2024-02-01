@@ -5,10 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -21,24 +20,26 @@ public class Review {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private Float rating;
+
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
+    @CreationTimestamp
     private LocalDateTime createdAt;
-
-    private Float rating;
 
     private LocalDateTime moderatedAt;
 
-    @Column(nullable = false)
-    private String name;
-
     @ManyToOne
-    private Game game;
-
-    @OneToOne
     private Moderator moderator;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Gamer gamer;
+
+    @ManyToOne
+    @JoinColumn(nullable = false)
+    private Game game;
 
 }

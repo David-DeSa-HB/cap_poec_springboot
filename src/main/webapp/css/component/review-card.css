@@ -1,0 +1,48 @@
+
+.main-review-card {
+    border: 1px solid ;
+    border-radius: 0.5em;
+    text-decoration: none;
+    padding: 0.2em 0.8em;
+    color: #fff;
+    font-size: 0.9em;
+    font-family: Cambria, sans-serif;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    margin: 1.2em;
+}
+
+.main-review-card:hover{
+    border: 2px solid lightgreen;
+    background-image: linear-gradient(to bottom right, rgba(0,55,100,0), rgba(0,55,100,1));
+    transform: scale(1.1, 1.1);
+}
+
+.review-card {
+    width: 100%;
+    height: 170px;
+}
+
+.review-card .review-description {
+    text-justify: auto;
+}
+
+.rating-5 {
+    color: red;
+}
+
+.rating-10 {
+    color: coral;
+}
+
+.rating-15 {
+    color: limegreen;
+}
+
+.rating-19 {
+    color: forestgreen;
+}
+
+.rating-20 {
+    color: green;
+}

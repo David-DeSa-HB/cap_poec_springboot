@@ -14,7 +14,7 @@ public class GenreController {
 
     @GetMapping("/genres")
     public ModelAndView view(ModelAndView mav){
-        mav.setViewName("genres");
+        mav.setViewName("index");
         mav.addObject("genre", genreService.findAll());
         return mav;
     }

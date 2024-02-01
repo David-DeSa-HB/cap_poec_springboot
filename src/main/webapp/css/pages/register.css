@@ -1,9 +1,5 @@
 
 .container-security {
-    background-image:url(https://cdn.pixabay.com/photo/2022/11/17/22/13/futuristic-7599004_1280.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100%;
     width: auto;
     display: flex;
 }
@@ -16,12 +12,13 @@
 }
 
 .security-form {
-    margin: 12.5% auto auto auto;
+    margin: 5.5% auto auto auto;
     padding: 1.3em 6em;
     border: 2px solid cornflowerblue;
     border-radius: 2em;
     align-content: center;
     width: 48%;
-    background-image: linear-gradient(to bottom right, midnightblue, darkslateblue);
+    background-image: linear-gradient(to bottom right, rgba(0,10,55,0), rgba(0,10,55,1));
+
 }
 

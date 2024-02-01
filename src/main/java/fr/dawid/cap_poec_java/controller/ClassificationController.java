@@ -14,7 +14,7 @@ public class ClassificationController {
 
     @GetMapping("/classifications")
     public ModelAndView view(ModelAndView mav){
-        mav.setViewName("classifications");
+        mav.setViewName("index");
         mav.addObject("classification", classificationService.findAll());
         return mav;
     }

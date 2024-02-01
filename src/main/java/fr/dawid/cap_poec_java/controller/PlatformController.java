@@ -14,7 +14,7 @@ public class PlatformController {
 
     @GetMapping("/platforms")
     public ModelAndView view(ModelAndView mav){
-        mav.setViewName("platforms");
+        mav.setViewName("index");
         mav.addObject("platform", platformService.findAll());
         return mav;
     }

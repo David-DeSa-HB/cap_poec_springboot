@@ -12,30 +12,29 @@
     <head>
         <title>${title}</title>
         <link href="${contextPath}/css/main.css" rel="stylesheet">
-<%--        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">--%>
-<%--        <script type="text/javascript" src="${contextPath}/js/page/search-bar.js"></script>--%>
-<%--        <script type="text/javascript" src="${contextPath}/js/page/profile.js"></script>--%>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+        <script type="text/javascript" src="${contextPath}/js/alert.js"></script>
+        <script type="text/javascript" src="${contextPath}/js/hide-form.js"></script>
+        <script type="text/javascript" src="${contextPath}/js/init-sortable.js"></script>
+        <script type="text/javascript" src="${contextPath}/js/multiple-select.js"></script>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="row w-100">
-                <div class="col-2">
+        <nav class="navbar navbar-expand-lg sticky-top box-standard">
+            <div class="row w-100 d-flex justify-content-between">
+                <div class="col-2 d-flex align-items-center">
                     <a class="navbar-brand ms-3" href="${contextPath}/">
-                        <i class="fa-brands fa-steam fa-2x"></i>
+                        <i class="fa-solid fa-gamepad fa-2xl" style="color: #e46b1b;"></i>
                     </a>
                 </div>
-                <div class="col-2">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav">
-                            <security:authorize access="hasRole('ROLE_ADMIN')">
-                                <a class="nav-link" href="${UrlRoute.URL_ADMIN}">BO Admin</a>
-                            </security:authorize>
+
+                <%--<div class="col-3">
+                    <security:authorize access="hasRole('MODERATOR')">
+                        <div class="d-flex justify-content-end">
+                            <a class="nav-link" href="${UrlRoute.URL_REVIEWS}">Moderation</a>
                         </div>
-                    </div>
+                    </security:authorize>
                 </div>
+
                 <div class="col-4">
                     <div class="main-container p-2">
                         <div class="d-flex">
@@ -51,28 +50,27 @@
                         <div class="search-response-container">
                         </div>
                     </div>
-                </div>
+                </div>--%>
+
                 <div class="col-4">
                     <security:authorize access="!isAuthenticated()">
                         <div class="d-flex justify-content-end">
-                            <a class="nav-link" href="${UrlRoute.URL_REGISTER}">Register</a>
+                            <a class="nav-link" href="${UrlRoute.URL_REGISTER}">S'inscrire</a>
                         </div>
                         <div class="d-flex justify-content-end">
-                            <a class="nav-link" href="${UrlRoute.URL_LOGIN}">Login</a>
+                            <a class="nav-link" href="${UrlRoute.URL_LOGIN}">Se connecter</a>
                         </div>
                     </security:authorize>
                     <security:authorize access="isAuthenticated()">
                         <div class="d-flex justify-content-end">
                             <span class="ms-2">
                                 Bienvenue
-                                <a class="logged-user btn-link" href="${UrlRoute.URL_USER}/${userLogged.name}">
-                                     ${userLogged.name}
-                                </a> - ${userLogged.wallet}€
+                                <security:authentication property="name"/>
                             </span>
                         </div>
                         <div class="d-flex justify-content-end">
                             <form method="POST" action="${UrlRoute.URL_LOGOUT}" autocomplete="off">
-                                <button type="submit" tabindex="3" class="btn btn-link">Logout</button>
+                                <button type="submit" tabindex="3" class="btn btn-link">Se déconnecter</button>
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                             </form>
                         </div>
@@ -80,3 +78,10 @@
                 </div>
             </div>
         </nav>
+        <c:if test="${not empty flashMessage.message}">
+            <div class="container">
+                <div class="alert alert-${flashMessage.type}">
+                        ${flashMessage.message}
+                </div>
+            </div>
+        </c:if>

@@ -99,6 +99,25 @@
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>6.1.2</version>
 		</dependency>
+
+		<!-- Dépendance pour Faker -->
+		<dependency>
+			<groupId>com.github.javafaker</groupId>
+			<artifactId>javafaker</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+
+		<!-- Dépendance pour les Excel -->
+		<dependency>
+			<groupId>org.dhatim</groupId>
+			<artifactId>fastexcel</artifactId>
+			<version>0.15.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.dhatim</groupId>
+			<artifactId>fastexcel-reader</artifactId>
+			<version>0.15.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -14,7 +14,7 @@ public class BusinessModelController {
 
     @GetMapping("/business-models")
     public ModelAndView view(ModelAndView mav){
-        mav.setViewName("business_models");
+        mav.setViewName("business_models/business_models");
         mav.addObject("business_model", businessModelService.findAll());
         return mav;
     }
