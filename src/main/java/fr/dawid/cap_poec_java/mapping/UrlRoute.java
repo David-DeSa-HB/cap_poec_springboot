@@ -11,6 +11,8 @@ public class UrlRoute {
     public final static String URL_GAMES = "/jeux";
     public final static String URL_GAMES_SHOW = URL_GAMES + "/{slug}";
     public final static String URL_GAME_NEW = "/admin"+ URL_GAMES + "/nouveau";
+    public final static String URL_GAME_UPLOAD_IMAGE = URL_GAMES + "/upload-image";
+    public final static String URL_GAME_UPLOAD_IMAGE_PATH = URL_GAMES + "/upload-image/{slug}";
     public final static String URL_GAME_DELETE = "/admin"+ URL_GAMES;
     public final static String URL_REVIEWS = "/avis";
     public final static String URL_REVIEW_MODERATE = URL_REVIEWS + "/{id}/{moderate}";

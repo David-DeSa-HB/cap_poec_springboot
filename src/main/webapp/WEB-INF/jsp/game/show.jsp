@@ -29,6 +29,9 @@
                 >
                     <i class="fa-solid fa-xmark fa-2x"></i>
                 </a>
+                <a class="ms-1 link-green" href="${UrlRoute.URL_GAME_UPLOAD_IMAGE}/${game.slug}">
+                    <i class="fa-solid fa-upload"></i>
+                </a>
             </security:authorize>
             </div>
             <div class="box-blk mt-5">
@@ -50,7 +53,6 @@
                     <p class="mt-2">Editeur: ${game.businessModel.name}</p>
                     <p class="mt-2">Modèle Economique: ${game.publisher.name}</p>
                     <p class="mt-2">Classification: ${game.classification.name}</p>
-
                 </c:if>
             </div>
         </div>

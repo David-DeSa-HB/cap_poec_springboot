@@ -10,6 +10,7 @@ import fr.dawid.cap_poec_java.service.*;
 import fr.dawid.cap_poec_java.service.interfaces.DAOFindByIdInterface;
 import fr.dawid.cap_poec_java.utils.FlashMessage;
 import fr.dawid.cap_poec_java.utils.FlashMessageBuilder;
+import fr.dawid.cap_poec_java.utils.FileUploadService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -17,6 +18,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -35,6 +37,7 @@ public class GameController implements DAOFindByIdInterface<Game> {
     private PublisherService publisherService;
     private PlatformService platformService;
     private FlashMessageBuilder flashMessageBuilder;
+    private FileUploadService fileUploadService;
     @Override
     public Game findById(Long id) {
         return gameRepository.findById(id)
@@ -152,6 +155,40 @@ public class GameController implements DAOFindByIdInterface<Game> {
                 flashMessageBuilder.createWarningFlashMessage("Jeu effacé !")
         );
         mav.setViewName("redirect:" + UrlRoute.URL_GAMES);
+        return mav;
+    }
+
+    @GetMapping(value = UrlRoute.URL_GAME_UPLOAD_IMAGE_PATH)
+    public ModelAndView uploadImage(
+            ModelAndView mav,
+            @PathVariable String slug
+    ) {
+        mav.setViewName("game/upload-image");
+        return mav;
+    }
+
+    @PostMapping(value = UrlRoute.URL_GAME_UPLOAD_IMAGE_PATH)
+    public ModelAndView uploadImage(
+            ModelAndView mav,
+            @RequestParam("file") MultipartFile file,
+            @PathVariable String slug,
+            RedirectAttributes redirectAttributes
+    ) {
+        String fileName = fileUploadService.uploadFile(file, "game", slug);
+        if (fileName.contains("erreur")) {
+            redirectAttributes.addFlashAttribute(
+                    "flashMessage",
+                    flashMessageBuilder.createDangerFlashMessage(fileName)
+            );
+            mav.setViewName("game/upload-image");
+            return mav;
+        }
+        gameService.saveImageToGame(fileName, slug);
+        redirectAttributes.addFlashAttribute(
+                "flashMessage",
+                flashMessageBuilder.createSuccessFlashMessage("Image téléversée avec succès !")
+        );
+        mav.setViewName("redirect:" + UrlRoute.URL_GAMES+ "/" + slug);
         return mav;
     }
 }

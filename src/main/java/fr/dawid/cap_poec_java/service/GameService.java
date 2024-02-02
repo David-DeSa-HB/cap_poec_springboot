@@ -56,4 +56,10 @@ public class GameService implements
     public void delete(Long id){
         gameRepository.deleteById(id);
     }
+
+    public void saveImageToGame(String fileName, String slug) {
+        Game game = findBySlug(slug);
+        game.setImage(fileName);
+        gameRepository.flush();
+    }
 }
