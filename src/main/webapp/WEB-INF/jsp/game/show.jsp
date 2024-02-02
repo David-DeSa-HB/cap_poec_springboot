@@ -22,16 +22,21 @@
             <div class="d-flex justify-content-start">
             <h1>${game.name}</h1>
             <security:authorize access="hasRole('MODERATOR')">
+                <div class="m-2">
+                    <a class="ms-1 link-green"
+                            href="${UrlRoute.URL_GAME_UPLOAD_IMAGE}/${game.slug}"
+                            title="Téléverser une image"
+                         >
+                             <i class="fa-solid fa-upload"></i>
+                    </a>
+                    <a class="btn btn-link rating-5"
+                                   href="${UrlRoute.URL_GAME_DELETE}/${game.id}"
+                                   title="Supprimer"
+                                >
+                                    <i class="fa-solid fa-xmark fa-2x"></i>
+                    </a>
 
-                <a class="btn btn-link rating-5"
-                   href="${UrlRoute.URL_GAME_DELETE}/${game.id}"
-                   title="Supprimer"
-                >
-                    <i class="fa-solid fa-xmark fa-2x"></i>
-                </a>
-                <a class="ms-1 link-green" href="${UrlRoute.URL_GAME_UPLOAD_IMAGE}/${game.slug}">
-                    <i class="fa-solid fa-upload"></i>
-                </a>
+                </div>
             </security:authorize>
             </div>
             <div class="box-blk mt-5">
